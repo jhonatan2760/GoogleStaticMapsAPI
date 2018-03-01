@@ -22,7 +22,7 @@ public class GoogleMapsClient {
 
 	private final String url = "https://maps.googleapis.com/maps/api/directions/json";
 	private final String maps = "https://maps.googleapis.com/maps/api/staticmap?size=600x300&maptype=roadmap";
-	private final String key = "AIzaSyD3ugNay_TZOIlxHCcKHRvTrlWr5rhSJP0";
+	private final String key = "";
 	private Document doc;
 	public GoogleMapsClient() {
 		
