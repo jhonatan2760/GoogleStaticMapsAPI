@@ -26,14 +26,19 @@ class MapaController {
 	}
 	
 	_criarConexaoAjax(mapa){
+		let sp = new SpinnerView();
+		sp.update();
 		let endPoint = `Maps?init=${mapa.pontoPartida}&origin=${mapa.pontoChegada}`;
 		let xmlReq = new XMLHttpRequest();
+		let mp = new MapaView({});
 		xmlReq.onreadystatechange = function(){
-			if(xmlReq.readyState === 4 && xmlReq.status === 200){
-				let json = JSON.parse(xmlReq.responseText);
-				let mp = new MapaView(json);
-				mp.update(json);				
-			}
+			if(xmlReq.readyState === 4 )		
+				if(xmlReq.status === 200){
+					let json = JSON.parse(xmlReq.responseText);
+					mp.update(json);				
+				}else if(xmlReq.status === 500){
+					mp.error(xmlReq);
+				}
 		}
 		xmlReq.open('GET', endPoint);
 		xmlReq.send();
